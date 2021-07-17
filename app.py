@@ -5,8 +5,10 @@ import string
 import threading
 import time
 import os
+import tgcrypto
 from os import system
 from random import randint
+from webserver import keep_alive
 
 import requests
 
@@ -23,7 +25,7 @@ app = Client(
 
 @app.on_message(filters.command('start', ["/","#"]))
 async def start(Client, msg):
-  await app.send_message(msg.chat.id, "Non fare tanti account, massimo 50.\n\n/gen (num account)")
+  await app.send_message(msg.chat.id, "/gen")
   
 
 @app.on_message(filters.command('gen', ["/", "#"]))
@@ -131,5 +133,5 @@ async def gen(Client, msg):
 
   
 
-
+keep_alive()
 app.run()
